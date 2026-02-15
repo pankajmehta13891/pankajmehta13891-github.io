@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IRIS Dataset Mini Dashboard</title>
+
+<!-- External CSS -->
+<link rel="stylesheet" href="css/style.css">
+
+<!-- Plotly (for scatter charts) -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+
+<h1>IRIS Dataset Mini Dashboard Project</h1>
+
+<!-- ===== TAB BUTTONS ===== -->
+<div class="tab">
+<button onclick="showHome()">Home</button>
+<button onclick="openTab(event,'localcsv')">Local CSV Iris</button>
+<button onclick="openTab(event,'urlfetch')">URL Fetch Iris</button>
+<button onclick="openTab(event,'iframeiris')">IFrame Iris</button>
+<button onclick="openTab(event,'analysis')">Analysis</button>
+<button onclick="openTab(event,'ml')">ML</button>
+<button onclick="openTab(event,'notebook')">Notebook</button>
+</div>
+<div id="aboutContainer"></div>
+<!-- ===== 1 LOCAL CSV DASHBOARD ===== -->
+<div id="localcsv" class="tabcontent">
+<h2>Local CSV Iris (Sepal Plot)</h2>
+<button onclick="loadLocalCSV()">Load Local iris.csv</button>
+<div id="localPlot"></div>
+</div>
+
+<!-- ===== 2 URL FETCH DASHBOARD ===== -->
+<div id="urlfetch" class="tabcontent">
+<h2>URL Fetch Iris (Petal Plot)</h2>
+
+<input
+type="text"
+id="dataUrl"
+value="https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv"
+>
+<button onclick="loadFromURL()">Fetch Data</button>
+
+<div id="plot"></div>
+</div>
+
+<!-- ===== 3 IFRAME DASHBOARD ===== -->
+<div id="iframeiris" class="tabcontent">
+<h2>Iris Graph via iframe</h2>
+<button onclick="loadIframe()">Load iris.html</button>
+<div id="iframeContainer"></div>
+</div>
+
+<!-- ===== 4 ANALYSIS DASHBOARD ===== -->
+<div id="analysis" class="tabcontent">
+<h2>Iris Dataset Analysis</h2>
+<button onclick="runAnalysis()">Run Analysis</button>
+<div id="analysisResult"></div>
+</div>
+
+<!-- ===== 5 ML DASHBOARD ===== -->
+<div id="ml" class="tabcontent">
+<h2>Iris ML Dashboard</h2>
+<button onclick="runML()">Run ML</button>
+<div id="mlResult"></div>
+</div>
+
+<!-- ===== 6 NOTEBOOK DASHBOARD ===== -->
+<div id="notebook" class="tabcontent">
+<h2>Colab Notebook</h2>
+
+<button onclick="openNotebook('analysis')">
+Open Analysis Notebook
+</button>
+
+<button onclick="openNotebook('ml')">
+Open ML Notebook
+</button>
+
+</div>
+
+<!-- ===== JS FILES ===== -->
+<script src="js/tabs.js"></script>
+<script src="js/irisLocal.js"></script>
+<script src="js/irisFetch.js"></script>
+<script src="js/irisIframe.js"></script>
+<script src="js/irisAnalysis.js"></script>
+<script src="js/irisML.js"></script>
+<script src="js/notebook.js"></script>
+<script src="js/aboutLoader.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Iris Dynamic Plot</title>
+
+  <!-- Plotly CDN (interactive charts) -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+
+<body>
+
+<h2>Iris Dataset — Interactive Scatter Plot</h2>
+<div id="plot"></div>
+
+<script>
+
+// Iris dataset from GitHub (public CSV)
+fetch("https://raw.githubusercontent.com/uiuc-cse/data-fa14/gh-pages/data/iris.csv")
+.then(res => res.text())
+.then(data => {
+
+  let rows = data.split("\n").slice(1);
+
+  let setosaX=[], setosaY=[];
+  let versicolorX=[], versicolorY=[];
+  let virginicaX=[], virginicaY=[];
+
+  rows.forEach(r => {
+    let c = r.split(",");
+    if(c.length < 5) return;
+
+    let x = parseFloat(c[0]); // sepal_length
+    let y = parseFloat(c[1]); // sepal_width
+    let species = c[4];
+
+    if(species === "setosa"){
+      setosaX.push(x); setosaY.push(y);
+    }
+    else if(species === "versicolor"){
+      versicolorX.push(x); versicolorY.push(y);
+    }
+    else if(species === "virginica"){
+      virginicaX.push(x); virginicaY.push(y);
+    }
+  });
+
+  let traces = [
+    {
+      x: setosaX,
+      y: setosaY,
+      mode: "markers",
+      type: "scatter",
+      name: "Setosa"
+    },
+    {
+      x: versicolorX,
+      y: versicolorY,
+      mode: "markers",
+      type: "scatter",
+      name: "Versicolor"
+    },
+    {
+      x: virginicaX,
+      y: virginicaY,
+      mode: "markers",
+      type: "scatter",
+      name: "Virginica"
+    }
+  ];
+
+  Plotly.newPlot("plot", traces, {
+    title: "Sepal Length vs Sepal Width",
+    xaxis: { title: "Sepal Length" },
+    yaxis: { title: "Sepal Width" }
+  });
+
+});
+
+</script>
+
+</body>
+</html>
